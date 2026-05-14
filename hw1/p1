@@ -1,0 +1,64 @@
+#!/bin/bash
+
+echo -n "請輸入開始的數字: "
+read start
+echo -n "請輸入結束的數字: "
+read end
+read -p "輸入1表示要列出偶數，輸入2表示要列出奇數: " choice
+
+print_even()
+{
+    if [ $((start -lt end))] ; then
+            if [ $((start % 2)) -eq 0 ];then
+                start=$start
+            else
+                start=$((start + 1))
+            fi 
+            for ((i = start; i <= end; i+=2)); do
+                echo  $i
+            done
+        else 
+            if [ $((end %2)) -eq 0 ]; then
+                end=$end
+            else
+                end=$((end - 1))
+            fi
+            for ((i = end; i >= start; i-=2)); do
+                echo $i
+            done
+        fi
+}
+
+print_odd()
+{
+    if [ $((start -lt end))] ; then
+            if [ $((start % 2)) -eq 1 ];then
+                start=$start
+            else
+                start=$((start + 1))
+            fi 
+            for ((i = start; i <= end; i+=2)); do
+                echo  $i
+            done
+        else 
+            if [ $((end %2)) -eq 1 ]; then
+                end=$end
+            else
+                end=$((end - 1))
+            fi
+            for ((i = end; i >= start; i-=2)); do
+                echo $i
+            done
+        fi
+}
+
+case $choice in
+    1)
+        print_even
+        ;;
+    2)
+        print_odd
+        ;;
+    *)        echo "無效的選擇，請輸入1或2"
+        ;;
+esac
